@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>mmpic</title>
+
+    <style>
+    
+    html,body{margin:0;padding:0;width:100%;height:100%}
+    body{background-size:contain}
+    #img{width:100%;height:100%}
+    .row{width:100%;position: fixed;bottom:5%;opacity:0.7}
+    .col-md-4{width:33.333%;float: left;text-align: center;line-height:80px;}
+    .mainbtn{color: #fff;background-color: #d9534f;border-color: #d43f3a;width:100%;height:80px;border-radius: 50px;font-size: 20px;}
+    #top{width: 100%; position: fixed;top:0;opacity: 0.7;height: 10%;}
+    .col-md-6{width:50%;float: left;text-align: center;}
+    #center{width:100%;height:70%;position: fixed;top:10%;}
+    </style>
+</head>
+<body>
+<div id="top">
+    <div class="col-md-6">分类
+        <select id ="cat">
+            <option value="">全部</option>
+            <option value="xinggan">性感</option>
+            <option value="qingchun">清纯</option>
+            <option value="xiaohua">校花</option>
+            <option value="chemo">车模</option>
+            <option value="qipao">旗袍</option>
+            <option value="mingxing">明星</option>
+        </select>
+    </div>
+    <div class="col-md-6">幻灯
+        <select id="autoload">
+            <option value="">关</option>
+            <option value="3">3秒</option>
+            <option value="5">5秒</option>
+            <option value="10">10秒</option>
+            <option value="20">20秒</option>
+            <option value="40">40秒</option>
+            <option value="60">60秒</option>
+        </select>
+    </div>
+</div>
+<div id="center"></div>
+<div class="row">
+    <div class="col-md-4" id="saveas">保存图片</div>
+    <div class="col-md-4"><button class="mainbtn" id="random">换一张</button></div>
+    <div class="col-md-4" id="imgRange">查看图集</div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+
+//随机换图；
+function randImg(t=""){
+    t=$("#cat").val();
+    $("body").css("background","url(index.php?t="+t+"&v="+Math.random()+") no-repeat center").css("background-size","contain");
+}
+
+//图集
+function imgRange(id,num){
+    $("body").css("background","url(index.php?id="+id+"&num="+num+"&v="+Math.random()+") no-repeat center").css("background-size","contain");
+}
+
+
+$("#saveas").click(function(){
+    var id = $.cookie("mmpic_id");
+    var num = $.cookie("mmpic_num");
+    var url = "index.php?down=1&id="+id+"&num="+num;
+    window.open(url);
+});
+
+//返回随机图模式
+function returnRand(){
+    $("#random").text("换一张");
+    $("#imgRange").text("查看图集");
+    $.cookie("mmpic_mode","rand");
+    randImg();
+}
+
+randImg();
+
+//点击自动换时触发
+$("#random").click(function(){
+    if($.cookie("mmpic_mode") == "range"){
+        //图集模式，切换下一张
+        var id = $.cookie("mmpic_id");
+        var num = $.cookie("mmpic_num");
+        if(num == $.cookie("mmpic_count")){
+            returnRand();
+        }else{
+            num++;
+            //修改一下提示文字
+            if(num ==$.cookie("mmpic_count")){
+                $("#random").text("看完返回");
+            }
+            //下一张图
+            imgRange(id,num);
+        }
+    }else{
+        randImg();
+    }
+    //log();
+});
+
+//点击图集时
+$("#imgRange").click(function(){
+    if($.cookie("mmpic_mode") == "range"){
+        returnRand();
+    }else{
+        id = $.cookie("mmpic_id");
+        //先显示第一张
+        imgRange(id,1);
+
+        $("#random").text("下一张");
+        $("#imgRange").text("返回");
+        //设置为图集模式
+        $.cookie("mmpic_mode","range");
+    }
+});
+
+function log(){
+    console.log("id:"+$.cookie("mmpic_id"));
+    console.log("page:"+$.cookie("mmpic_num"));
+    console.log("count:"+$.cookie("mmpic_count"));
+    console.log("mode:"+$.cookie("mmpic_mode"));
+};
+
+//隐藏按钮
+$("#center").click(function(){
+    $(".row").slideToggle();
+    $("#top").slideToggle();
+});
+
+//幻灯
+var timer;
+$("#autoload").change(function(){
+    var sec = $(this).val();
+    //console.log(sec);
+    if(sec>0){
+        timer = setInterval(function(){
+            randImg();
+        },sec*1000);
+
+        $(".row").slideUp();
+        $("#top").slideUp();
+    }else{
+        clearInterval(timer);
+    }
+});
+</script>
+</body>
+</html>
