@@ -29,3 +29,11 @@
 
 * 博客：[岩兔站](https://yantuz.cn "岩兔站-关注互联网折腾服务器分享码农的日常")
 * 微博：[新浪微博](https://weibo.com/yztop "岩兔站")
+
+## 觉得好用！打赏楼主推出更好的作品
+
+为了更好的用户体验，网站**无广告**！！但是服务器域名都是要花钱的，如果你觉得程序好用，欢迎打赏！
+
+|支付宝|微信|
+|---|---
+|![](https://ws4.sinaimg.cn/large/007452UMly1fqa26f6fdaj308c08caab.jpg)|![](https://ws1.sinaimg.cn/large/007452UMly1fqa1vf6njtj308c08c0t2.jpg)
