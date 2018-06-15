@@ -22,7 +22,7 @@
 
 地址：https://yantuz.cn/mmPic/view.html
 
-<img src="http://pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url=https://yantuz.cn/mmPic/view.html">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&amp;data=https://yantuz.cn/mmPic/view.html">
 
 ## 关注我
 
