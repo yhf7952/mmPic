@@ -6,7 +6,7 @@ use QL\QueryList;
 use Medoo\Medoo;
 
 #设置开始
-$baseUrl = 'http://www.mm131.com/';
+$baseUrl = 'https://www.mm131.net/';
 $catArr=array(
     'qingchun' => '1',
     'xiaohua' => '2',
