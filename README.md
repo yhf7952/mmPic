@@ -10,7 +10,7 @@
 
 调用方式
 ```
-<img src="https://bak.yantuz.cn/mmPic/" />
+<img src="https://bak.yantuz.cn:8000/mmPic/" />
 ```
 <img src="https://bak.yantuz.cn:8000/mmPic/" />
 
