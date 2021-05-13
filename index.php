@@ -49,14 +49,15 @@ function getRandImg(){
     setcookie('mmpic_id',$id);
     setcookie('mmpic_count',$item[0]['count']);
     setcookie('mmpic_num',$num);
-
-    $url = "http://img1.mm131.me/pic/$id/$num.jpg";
+    
+    $url = "https://img1.hnllsy.com/pic/$id/$num.jpg";
+    //echo $url;
     return $url;
 }
 $id = $_GET['id'];
 $num = $_GET['num'];
 if($id && $num){
-    $url = "http://img1.mm131.me/pic/$id/$num.jpg";
+    $url = "https://img1.hnllsy.com/pic/$id/$num.jpg";
     //存入Cookie
     setcookie('mmpic_id',$id);
     setcookie('mmpic_num',$num);
@@ -64,7 +65,7 @@ if($id && $num){
     $url = getRandImg();
 }
 //echo $url;
-$baseUrl = "http://www.mm131.com/";
+$baseUrl = "https://www.mm131.net/";
 function referfile($url,$refer='') {
 	$opt=array('http'=>array('header'=>"Referer:$refer"));
 	$context=stream_context_create($opt);
